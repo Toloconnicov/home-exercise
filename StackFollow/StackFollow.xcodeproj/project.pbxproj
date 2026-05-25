@@ -26,6 +26,11 @@
 		0485B2E42FC448C000D4F8C3 /* NetworkClientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485B2E32FC448C000D4F8C3 /* NetworkClientTest.swift */; };
 		0485B2E62FC4688F00D4F8C3 /* MockNetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485B2E52FC4688F00D4F8C3 /* MockNetworkMonitor.swift */; };
 		0485B2E92FC4787F00D4F8C3 /* UserServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485B2E82FC4787F00D4F8C3 /* UserServiceTest.swift */; };
+		0485B2EC2FC4938900D4F8C3 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485B2EB2FC4938900D4F8C3 /* UserTableViewCell.swift */; };
+		0485B2EE2FC494C900D4F8C3 /* UserCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485B2ED2FC494C900D4F8C3 /* UserCellViewModel.swift */; };
+		0485B2F22FC49A4900D4F8C3 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485B2F12FC49A4900D4F8C3 /* UIImageView+Extension.swift */; };
+		0485B2F52FC4B5A800D4F8C3 /* UsersListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485B2F42FC4B5A800D4F8C3 /* UsersListViewModelTest.swift */; };
+		0485B2F72FC4B60800D4F8C3 /* MockUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485B2F62FC4B60800D4F8C3 /* MockUserService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +74,11 @@
 		0485B2E32FC448C000D4F8C3 /* NetworkClientTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClientTest.swift; sourceTree = "<group>"; };
 		0485B2E52FC4688F00D4F8C3 /* MockNetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkMonitor.swift; sourceTree = "<group>"; };
 		0485B2E82FC4787F00D4F8C3 /* UserServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceTest.swift; sourceTree = "<group>"; };
+		0485B2EB2FC4938900D4F8C3 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		0485B2ED2FC494C900D4F8C3 /* UserCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCellViewModel.swift; sourceTree = "<group>"; };
+		0485B2F12FC49A4900D4F8C3 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		0485B2F42FC4B5A800D4F8C3 /* UsersListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewModelTest.swift; sourceTree = "<group>"; };
+		0485B2F62FC4B60800D4F8C3 /* MockUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +144,7 @@
 			children = (
 				0485B2DF2FC43A3500D4F8C3 /* Mocks */,
 				0485B2E22FC4428200D4F8C3 /* Network */,
+				0485B2F32FC4B58000D4F8C3 /* ViewModels */,
 				0485B2AB2FC1C96700D4F8C3 /* StackFollowTests.swift */,
 			);
 			path = StackFollowTests;
@@ -170,6 +181,7 @@
 		0485B2C62FC1CC1E00D4F8C3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0485B2EA2FC4937A00D4F8C3 /* Cells */,
 				0485B2982FC1C96400D4F8C3 /* UsersListViewController.swift */,
 			);
 			path = Views;
@@ -179,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				0485B2C82FC1E13500D4F8C3 /* UsersListViewModel.swift */,
+				0485B2ED2FC494C900D4F8C3 /* UserCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -223,6 +236,7 @@
 		0485B2D02FC2002A00D4F8C3 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				0485B2F12FC49A4900D4F8C3 /* UIImageView+Extension.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -232,6 +246,7 @@
 			children = (
 				0485B2DD2FC43A2F00D4F8C3 /* MockURLSession.swift */,
 				0485B2E52FC4688F00D4F8C3 /* MockNetworkMonitor.swift */,
+				0485B2F62FC4B60800D4F8C3 /* MockUserService.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -251,6 +266,22 @@
 				0485B2E82FC4787F00D4F8C3 /* UserServiceTest.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		0485B2EA2FC4937A00D4F8C3 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0485B2EB2FC4938900D4F8C3 /* UserTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		0485B2F32FC4B58000D4F8C3 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				0485B2F42FC4B5A800D4F8C3 /* UsersListViewModelTest.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -385,9 +416,12 @@
 			files = (
 				0485B2E12FC43EE100D4F8C3 /* URLSessionProtocol.swift in Sources */,
 				0485B2992FC1C96400D4F8C3 /* UsersListViewController.swift in Sources */,
+				0485B2EC2FC4938900D4F8C3 /* UserTableViewCell.swift in Sources */,
 				0485B2D82FC210EA00D4F8C3 /* NetworkMonitor.swift in Sources */,
 				0485B2D62FC2049500D4F8C3 /* UserModel.swift in Sources */,
+				0485B2EE2FC494C900D4F8C3 /* UserCellViewModel.swift in Sources */,
 				0485B2CF2FC1FD4100D4F8C3 /* NetworkClient.swift in Sources */,
+				0485B2F22FC49A4900D4F8C3 /* UIImageView+Extension.swift in Sources */,
 				0485B2D42FC2041A00D4F8C3 /* UserService.swift in Sources */,
 				0485B2C92FC1E13500D4F8C3 /* UsersListViewModel.swift in Sources */,
 				0485B2DA2FC3015900D4F8C3 /* NetworkError.swift in Sources */,
@@ -401,8 +435,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0485B2E42FC448C000D4F8C3 /* NetworkClientTest.swift in Sources */,
+				0485B2F52FC4B5A800D4F8C3 /* UsersListViewModelTest.swift in Sources */,
 				0485B2DE2FC43A2F00D4F8C3 /* MockURLSession.swift in Sources */,
 				0485B2AC2FC1C96700D4F8C3 /* StackFollowTests.swift in Sources */,
+				0485B2F72FC4B60800D4F8C3 /* MockUserService.swift in Sources */,
 				0485B2E92FC4787F00D4F8C3 /* UserServiceTest.swift in Sources */,
 				0485B2E62FC4688F00D4F8C3 /* MockNetworkMonitor.swift in Sources */,
 			);

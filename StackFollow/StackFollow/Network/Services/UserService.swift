@@ -25,7 +25,6 @@ struct UserService: UserServiceProtocol {
       let response: UsersResponse = try await networkClient.request(url: url)
       return response.items
     } catch {
-      print("error received", error)
       throw error
     }
   }
