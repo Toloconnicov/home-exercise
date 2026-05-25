@@ -43,4 +43,18 @@ final class UsersListViewModel {
       }
     }
   }
+  
+  func numberOfRows() -> Int {
+    users.count
+  }
+  
+  func cellViewModel(at index: Int) -> UserCellViewModel {
+    if index < users.count {
+      let user = users[index]
+      return UserCellViewModel(imageURL: URL(string: user.profileImage),
+                               name: user.displayName,
+                               reputation: String(describing: user.reputation))
+    }
+    return UserCellViewModel(imageURL: nil, name: "", reputation: "")
+  }
 }

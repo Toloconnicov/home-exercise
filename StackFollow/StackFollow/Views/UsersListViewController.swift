@@ -35,6 +35,7 @@ class UsersListViewController: UIViewController {
     super.viewDidLoad()
     setupUI()
     setupBinding()
+    setupTableView()
     
     viewModel.fetchUsers()
   }
@@ -42,7 +43,6 @@ class UsersListViewController: UIViewController {
   private func setupUI() {
     view.backgroundColor = .systemBackground
     
-    view.addSubview(tableView)
     view.addSubview(loadingIndicator)
     setupEmptyStateView()
     
@@ -50,11 +50,41 @@ class UsersListViewController: UIViewController {
     
     NSLayoutConstraint.activate([
       loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+      loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
     ])
   }
   
+  private func setupTableView() {
+    tableView.delegate = self
+    tableView.dataSource = self
+    
+    tableView.register(
+      UserTableViewCell.self,
+      forCellReuseIdentifier: UserTableViewCell.identifier
+    )
+    
+    view.addSubview(tableView)
+    
+    tableView.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+    ])
+    
+    tableView.rowHeight = UITableView.automaticDimension
+    tableView.estimatedRowHeight = 100
+  }
+  
   private func setupBinding() {
+    
+    viewModel.onUsersUpdated = { [weak self] in
+      guard let self = self else { return }
+      
+      self.emptyStateLabel.isHidden = !self.viewModel.users.isEmpty
+      self.tableView.reloadData()
+    }
     
     viewModel.onLoadingTriggered = { [weak self] isLoading in
       guard let self = self else { return }
@@ -82,4 +112,32 @@ class UsersListViewController: UIViewController {
       emptyStateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24)
     ])
   }
+}
+
+extension UsersListViewController: UITableViewDataSource {
+  
+  func tableView(_ tableView: UITableView,
+                 numberOfRowsInSection section: Int) -> Int {
+    viewModel.numberOfRows()
+  }
+  
+  func tableView(_ tableView: UITableView,
+                 cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: UserTableViewCell.identifier,
+                                                   for: indexPath) as? UserTableViewCell else {
+      return UITableViewCell()
+    }
+    
+    let cellViewModel = viewModel.cellViewModel(at: indexPath.row)
+    cell.configure(with: cellViewModel)
+    
+    return cell
+  }
+}
+
+// MARK: - UITableViewDelegate
+
+extension UsersListViewController: UITableViewDelegate {
+  
 }
