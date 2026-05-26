@@ -13,6 +13,9 @@ The application was built fully programmatically using UIKit and follows the MVV
 - Empty state handling
 - Async/await networking
 - Unit tested networking and business logic
+- Follow / unfollow users
+- Persist follow state locally
+- Programmatic UIKit UI
 
 ---
 
@@ -48,6 +51,9 @@ The project follows the MVVM (Model-View-ViewModel) pattern.
 
 - **Network Layer**
 - Generic `NetworkClient` handles requests and decoding
+
+- **Persistence Layer**
+- `UserDefaults` used for lightweight follow state persistence
 
 ---
 
@@ -88,11 +94,19 @@ Features:
 
 ---
 
+## Persistence
+
+Follow state is persisted using `UserDefaults`.
+
+This approach was chosen because the stored data is lightweight and does not require a more complex persistence solution or security layer.
+
+---
+
 ## Offline Handling
 
 The app monitors connectivity using `NWPathMonitor`.
 
-If the device is offline, the user sees an inline empty state message instead of a blocking alert.
+If the device is offline, the user sees an inline empty state message.
 
 ---
 

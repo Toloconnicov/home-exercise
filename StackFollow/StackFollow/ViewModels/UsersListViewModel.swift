@@ -14,32 +14,39 @@ final class UsersListViewModel {
   var onError: ((String) -> Void)?
   
   private let userService: UserServiceProtocol
+  private let followStorage: FollowStorageProtocol
+  
   private(set) var users: [User] = []
   
-  init(userService: UserServiceProtocol) {
+  init(userService: UserServiceProtocol,
+       followStorage: FollowStorageProtocol) {
     self.userService = userService
+    self.followStorage = followStorage
   }
   
-  func fetchUsers() {
+  func fetchUsers() async {
     onLoadingTriggered?(true)
-    Task {
-      do {
-        let fetchedUsers = try await userService.fetchUsers()
-        users = Array(fetchedUsers.prefix(20))
-        await MainActor.run {
-          onLoadingTriggered?(false)
-          onUsersUpdated?()
-          
-          if users.isEmpty {
-            onError?("No users found")
-          }
-        }
-      } catch let error as NetworkError {
+    do {
+      let fetchedUsers = try await userService.fetchUsers()
+      users = Array(fetchedUsers.prefix(20))
+      await MainActor.run {
+        onLoadingTriggered?(false)
+        onUsersUpdated?()
         
-        await MainActor.run {
-          onLoadingTriggered?(false)
-          onError?(error.message)
+        if users.isEmpty {
+          onError?("No users found")
         }
+      }
+    } catch let error as NetworkError {
+      
+      await MainActor.run {
+        onLoadingTriggered?(false)
+        onError?(error.message)
+      }
+    } catch {
+      await MainActor.run {
+        onLoadingTriggered?(false)
+        onError?(error.localizedDescription)
       }
     }
   }
@@ -53,8 +60,23 @@ final class UsersListViewModel {
       let user = users[index]
       return UserCellViewModel(imageURL: URL(string: user.profileImage),
                                name: user.displayName,
-                               reputation: String(describing: user.reputation))
+                               reputation: String(describing: user.reputation),
+                               isFollowed: followStorage.isFollowed(userId: user.id))
     }
-    return UserCellViewModel(imageURL: nil, name: "", reputation: "")
+    return UserCellViewModel(imageURL: nil, name: "", reputation: "", isFollowed: false)
+  }
+  
+  func toggleFollow(at index: Int) {
+    guard index < users.count else { return }
+    
+    var user = cellViewModel(at: index)
+    user.isFollowed.toggle()
+    
+    let userId = users[index].id
+    user.isFollowed
+    ? followStorage.follow(userId: userId)
+    : followStorage.unfollow(userId: userId)
+    
+    onUsersUpdated?()
   }
 }

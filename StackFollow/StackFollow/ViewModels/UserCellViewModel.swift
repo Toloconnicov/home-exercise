@@ -12,10 +12,12 @@ struct UserCellViewModel {
   let imageURL: URL?
   let name: String
   let reputation: String
+  var isFollowed: Bool = false
   
-  init(imageURL: URL?, name: String, reputation: String) {
+  init(imageURL: URL?, name: String, reputation: String, isFollowed: Bool) {
     self.imageURL = imageURL
     self.name = name
     self.reputation = reputation
+    self.isFollowed = isFollowed
   }
 }

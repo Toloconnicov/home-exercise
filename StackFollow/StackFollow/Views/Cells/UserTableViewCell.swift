@@ -45,6 +45,15 @@ final class UserTableViewCell: UITableViewCell {
     return stackView
   }()
   
+  private let followButton: UIButton = {
+    let button = UIButton(type: .system)
+    
+    button.configuration = .filled()
+    return button
+  }()
+  
+  var onFollowButtonTapped: (() -> ())?
+  
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     
@@ -66,6 +75,7 @@ final class UserTableViewCell: UITableViewCell {
     setupMainStackView()
     setupImageView()
     setupUserInfo()
+    setupFollowButton()
   }
   
   func configure(with viewModel: UserCellViewModel) {
@@ -76,6 +86,9 @@ final class UserTableViewCell: UITableViewCell {
     imageTask = Task { [weak self] in
       await self?.userImageView.loadImage(from: viewModel.imageURL)
     }
+    
+    followButton.tintColor = viewModel.isFollowed ? .systemPink : .blue
+    followButton.setTitle(viewModel.isFollowed ? "Unfollow" : "Follow", for: .normal)
   }
   
   private func setupMainStackView() {
@@ -118,5 +131,22 @@ final class UserTableViewCell: UITableViewCell {
     userInfoStackView.addArrangedSubview(reputationLabel)
     
     userInfoStackView.translatesAutoresizingMaskIntoConstraints = false
+  }
+  
+  private func setupFollowButton() {
+    mainStackView.addArrangedSubview(followButton)
+    
+    NSLayoutConstraint.activate([
+      followButton.widthAnchor.constraint(equalToConstant: 100),
+      followButton.heightAnchor.constraint(equalToConstant: 40)
+    ])
+    
+    followButton.addTarget(self,
+                           action: #selector(followButtonTapped),
+                           for: .touchUpInside)
+  }
+  
+  @objc func followButtonTapped() {
+    onFollowButtonTapped?()
   }
 }

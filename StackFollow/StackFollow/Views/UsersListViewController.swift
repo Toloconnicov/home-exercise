@@ -37,7 +37,9 @@ class UsersListViewController: UIViewController {
     setupBinding()
     setupTableView()
     
-    viewModel.fetchUsers()
+    Task {
+      await viewModel.fetchUsers()
+    }
   }
   
   private func setupUI() {
@@ -89,7 +91,9 @@ class UsersListViewController: UIViewController {
     viewModel.onLoadingTriggered = { [weak self] isLoading in
       guard let self = self else { return }
       
-      isLoading ? self.loadingIndicator.startAnimating() : self.loadingIndicator.stopAnimating()
+      DispatchQueue.main.async {
+        isLoading ? self.loadingIndicator.startAnimating() : self.loadingIndicator.stopAnimating()
+      }
     }
     
     viewModel.onError = { [weak self] message in
@@ -132,6 +136,9 @@ extension UsersListViewController: UITableViewDataSource {
     let cellViewModel = viewModel.cellViewModel(at: indexPath.row)
     cell.configure(with: cellViewModel)
     
+    cell.onFollowButtonTapped = { [weak self] in
+      self?.viewModel.toggleFollow(at: indexPath.row)
+    }
     return cell
   }
 }
