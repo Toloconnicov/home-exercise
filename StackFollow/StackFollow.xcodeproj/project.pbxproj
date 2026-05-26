@@ -31,6 +31,9 @@
 		0485B2F22FC49A4900D4F8C3 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485B2F12FC49A4900D4F8C3 /* UIImageView+Extension.swift */; };
 		0485B2F52FC4B5A800D4F8C3 /* UsersListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485B2F42FC4B5A800D4F8C3 /* UsersListViewModelTest.swift */; };
 		0485B2F72FC4B60800D4F8C3 /* MockUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485B2F62FC4B60800D4F8C3 /* MockUserService.swift */; };
+		0485B2FA2FC4C72000D4F8C3 /* FollowStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485B2F92FC4C72000D4F8C3 /* FollowStorage.swift */; };
+		0485B2FC2FC4D99B00D4F8C3 /* MockFollowStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485B2FB2FC4D99B00D4F8C3 /* MockFollowStorage.swift */; };
+		04F9498E2FC5AD76007BBF8B /* FollowStorageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F9498D2FC5AD76007BBF8B /* FollowStorageTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +82,9 @@
 		0485B2F12FC49A4900D4F8C3 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		0485B2F42FC4B5A800D4F8C3 /* UsersListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewModelTest.swift; sourceTree = "<group>"; };
 		0485B2F62FC4B60800D4F8C3 /* MockUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserService.swift; sourceTree = "<group>"; };
+		0485B2F92FC4C72000D4F8C3 /* FollowStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowStorage.swift; sourceTree = "<group>"; };
+		0485B2FB2FC4D99B00D4F8C3 /* MockFollowStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFollowStorage.swift; sourceTree = "<group>"; };
+		04F9498D2FC5AD76007BBF8B /* FollowStorageTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowStorageTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +137,7 @@
 			children = (
 				0485B2C42FC1CA8000D4F8C3 /* Application */,
 				0485B2CA2FC1FCF200D4F8C3 /* Network */,
+				0485B2F82FC4C6FD00D4F8C3 /* Persistence */,
 				0485B2C72FC1E12200D4F8C3 /* ViewModels */,
 				0485B2C62FC1CC1E00D4F8C3 /* Views */,
 				0485B2C52FC1CA9200D4F8C3 /* Resources */,
@@ -247,6 +254,7 @@
 				0485B2DD2FC43A2F00D4F8C3 /* MockURLSession.swift */,
 				0485B2E52FC4688F00D4F8C3 /* MockNetworkMonitor.swift */,
 				0485B2F62FC4B60800D4F8C3 /* MockUserService.swift */,
+				0485B2FB2FC4D99B00D4F8C3 /* MockFollowStorage.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -256,6 +264,7 @@
 			children = (
 				0485B2E32FC448C000D4F8C3 /* NetworkClientTest.swift */,
 				0485B2E72FC4786F00D4F8C3 /* Services */,
+				04F9498C2FC5AD5E007BBF8B /* Persistence */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -282,6 +291,22 @@
 				0485B2F42FC4B5A800D4F8C3 /* UsersListViewModelTest.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		0485B2F82FC4C6FD00D4F8C3 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				0485B2F92FC4C72000D4F8C3 /* FollowStorage.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		04F9498C2FC5AD5E007BBF8B /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				04F9498D2FC5AD76007BBF8B /* FollowStorageTest.swift */,
+			);
+			path = Persistence;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -426,6 +451,7 @@
 				0485B2C92FC1E13500D4F8C3 /* UsersListViewModel.swift in Sources */,
 				0485B2DA2FC3015900D4F8C3 /* NetworkError.swift in Sources */,
 				0485B2952FC1C96400D4F8C3 /* AppDelegate.swift in Sources */,
+				0485B2FA2FC4C72000D4F8C3 /* FollowStorage.swift in Sources */,
 				0485B2972FC1C96400D4F8C3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,7 +463,9 @@
 				0485B2E42FC448C000D4F8C3 /* NetworkClientTest.swift in Sources */,
 				0485B2F52FC4B5A800D4F8C3 /* UsersListViewModelTest.swift in Sources */,
 				0485B2DE2FC43A2F00D4F8C3 /* MockURLSession.swift in Sources */,
+				04F9498E2FC5AD76007BBF8B /* FollowStorageTest.swift in Sources */,
 				0485B2AC2FC1C96700D4F8C3 /* StackFollowTests.swift in Sources */,
+				0485B2FC2FC4D99B00D4F8C3 /* MockFollowStorage.swift in Sources */,
 				0485B2F72FC4B60800D4F8C3 /* MockUserService.swift in Sources */,
 				0485B2E92FC4787F00D4F8C3 /* UserServiceTest.swift in Sources */,
 				0485B2E62FC4688F00D4F8C3 /* MockNetworkMonitor.swift in Sources */,

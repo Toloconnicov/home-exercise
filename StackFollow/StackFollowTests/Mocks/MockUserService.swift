@@ -11,6 +11,7 @@ import Foundation
 struct MockUserService: UserServiceProtocol {
   var shouldSucceed = true
   var shouldBeEmpty = false
+  var shouldThrowRandom = false
   
   func fetchUsers() async throws -> [User] {
     if shouldSucceed {
@@ -20,6 +21,12 @@ struct MockUserService: UserServiceProtocol {
       
       return [User(id: 1, displayName: "Jerry", reputation: 123, profileImage: "url")]
     } else {
+      if shouldThrowRandom {
+        let errorWithDescription = NSError(domain: "TestDomain",
+                                           code: 1,
+                                           userInfo: [NSLocalizedDescriptionKey: "Unknown error"])
+        throw errorWithDescription
+      }
       throw NetworkError.invalidResponse
     }
   }

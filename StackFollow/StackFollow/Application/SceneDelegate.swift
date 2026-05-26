@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     guard let windowScene = (scene as? UIWindowScene) else { return }
         
     let userService = UserService(networkClient: NetworkClient())
-    let vm = UsersListViewModel(userService: userService)
+    let vm = UsersListViewModel(userService: userService, followStorage: FollowStorage())
     let vc = UsersListViewController(viewModel: vm)
     
     window = UIWindow(windowScene: windowScene)
